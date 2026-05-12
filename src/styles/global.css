@@ -1,3 +1,26 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@plugin "daisyui" {
+  themes: lofi --default, black --prefersdark;
+}
+
+@plugin "daisyui/theme" {
+  name: "lofi";
+  --radius-box: 1rem;
+  --radius-btn: 0.5rem;
+  --radius-badge: 1.9rem;
+}
+
+@plugin "daisyui/theme" {
+  name: "black";
+  --radius-box: 1rem;
+  --radius-btn: 0.5rem;
+  --radius-badge: 1.9rem;
+  --color-secondary: #e5e5e5;
+}
+
 :root {
   --md-hl-color: #008351;
   --md-hl-bg: rgba(220, 252, 231, .99);
@@ -69,4 +92,20 @@
 .overflow-y-scroll::-webkit-scrollbar-thumb { background-color: oklch(var(--s)); }
 .overflow-y-scroll { scrollbar-width: 1px; }
 
-body { font-family: "DM Sans Variable", sans-serif; }
+body {
+  font-family: "DM Sans Variable", sans-serif;
+  color: var(--color-base-content);
+  background-color: var(--color-base-100);
+}
+
+/* daisyUI 4 had .join-vertical > * { margin-top: -1px } for shared borders.
+   Removed in v5; restore for v1 visual parity (compensates the row gap by
+   1px so cumulative drift across 12 sections doesn't break alignment).
+   Applied to all children, including first, so the whole stack starts 1px
+   higher to match v1's anchor. */
+.join-vertical > * { margin-top: -1px; }
+
+/* daisyUI 5 placed the collapse-arrow chevron at top: 2rem; v4 had 1.9rem.
+   Restore to keep the chevron vertically centered like v1. */
+.collapse-arrow > .collapse-title::after,
+.collapse-arrow > input[type="checkbox"] + .collapse-title::after { top: 1.9rem; }
