@@ -1,5 +1,9 @@
-name = "cv"
+name = "cv-v1"
 compatibility_date = "2026-05-08"
 
 [assets]
 directory = "./dist"
+
+[[routes]]
+pattern = "v1.cv.corbet.ch"
+custom_domain = true
